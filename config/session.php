@@ -214,4 +214,15 @@ return [
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
+    // SHINYA EDIT START
+    // 講座テキストによると以下の事象への対策らしい
+    // ↓
+    // owner/admin でログイン後、ユーザーでログインするとオーナー側のログイン情報が残ってしまう
+    'cookie_owner' => env('SESSION_COOKIE_OWNER', Str::slug(env('APP_NAME', 'laravel'), '_').'̲session_owner'),
+    'cookie_admin' => env('SESSION_COOKIE_ADMIN', Str::slug(env('APP_NAME', 'laravel'), '_').'̲session_admin'),
+
+    // SESSION_COOKIE_OWNER は現状未定義
+    // APP_NAME             は laravel
+    // slug は連結してurlに適した文字列に変換するので　laravel_ になる?
+    // SHINYA EDIT END
 ];
