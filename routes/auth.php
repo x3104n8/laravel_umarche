@@ -36,6 +36,10 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:users')->group(function () {  // SHINYA EDIT
+
+    // user でログイン中に /user/loginにアクセスがあった場合に/user/dashboardにリダイレクトさせる方法その2 OK
+    Route::get('login', function(){ return view('user.dashboard');});
+
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

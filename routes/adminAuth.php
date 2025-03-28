@@ -38,7 +38,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:admin')->group(function () {  // SHINYA EDIT
 
     // admin でログイン中に /admin/loginにアクセスがあった場合に/admin/dashboardにリダイレクトさせる方法その2 OK
-    // Route::get('login', function(){ return view('admin.dashboard');});
+    Route::get('login', function(){ return view('admin.dashboard');});
 
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
