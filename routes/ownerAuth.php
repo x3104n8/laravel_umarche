@@ -38,7 +38,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth:owners')->group(function () {  // SHINYA EDIT
 
     // owner でログイン中に /owner/loginにアクセスがあった場合に/owner/dashboardにリダイレクトさせる方法その2 OK
-    Route::get('login', function(){ return view('owner.dashboard');});
+    // Route::get('login', function(){ return view('owner.dashboard');});
 
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
