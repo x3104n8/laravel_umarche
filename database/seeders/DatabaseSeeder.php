@@ -14,10 +14,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // SHINYA DEL
+        // User::factory()->create([
+        //    'name' => 'Test User',
+        //    'email' => 'test@example.com',
+        //]);
+        // SHINYA MEMO: なぜAdminSeeder,  OwnerSeederのuse文が不要なのだろうか?
+        // SHINYA ADD START
+        $this->call([
+            AdminSeeder::class,
+            OwnerSeeder::class,
         ]);
+        // SHINYA ADD END
     }
 }

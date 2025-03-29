@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;  // SHINYA EDIT
+use App\Models\Owner; // Eloquent エロクアント  // SHIYA EDIT
+use Illuminate\Support\Facades\DB; // QueryBuilder クエリビルダ  // SHINYA EDIT
+use Carbon\Carbon;
 
 class OwnersController extends Controller implements HasMiddleware  // SHINYA EDIT
 {
@@ -24,8 +27,19 @@ class OwnersController extends Controller implements HasMiddleware  // SHINYA ED
      */
     public function index()
     {
-        dd('オーナー一覧です');
-        //
+        // 以下はテストコード //SHINYA EDIT
+        $date_now = Carbon::now();
+        $date_parse = Carbon::parse(now());
+        echo $date_now->year . '<br>';
+        echo $date_parse . '<br>';
+
+        $e_all = Owner::all();
+        $q_get = DB::table('owners')->select('name', 'created_at')->get();
+        // $q_1st = DB::table('owners')->select('name')->first();
+        // $c_tst = collect (['name' => 'てすと']);
+        // var_dump($q_1st);
+        // dd($e_all, $q_get, $q_1st, $c_tst);
+        return view('admin.owners.index',  compact('e_all', 'q_get'));
     }
 
     /**
