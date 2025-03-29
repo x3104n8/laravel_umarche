@@ -27,19 +27,21 @@ class OwnersController extends Controller implements HasMiddleware  // SHINYA ED
      */
     public function index()
     {
-        // 以下はテストコード //SHINYA EDIT
-        $date_now = Carbon::now();
-        $date_parse = Carbon::parse(now());
-        echo $date_now->year . '<br>';
-        echo $date_parse . '<br>';
+        // SHINYA TEST START  以下はテストコード
+        // $date_now = Carbon::now();
+        // $date_parse = Carbon::parse(now());
+        // echo $date_now->year . '<br>';
+        // echo $date_parse . '<br>';
+        // $e_all = Owner::all();
+        // $q_get = DB::table('owners')->select('name', 'created_at')->get();
+        // // $q_1st = DB::table('owners')->select('name')->first();
+        // // $c_tst = collect (['name' => 'てすと']);
+        // // var_dump($q_1st);
+        // // dd($e_all, $q_get, $q_1st, $c_tst);
+        // SHINYA TEST END
 
-        $e_all = Owner::all();
-        $q_get = DB::table('owners')->select('name', 'created_at')->get();
-        // $q_1st = DB::table('owners')->select('name')->first();
-        // $c_tst = collect (['name' => 'てすと']);
-        // var_dump($q_1st);
-        // dd($e_all, $q_get, $q_1st, $c_tst);
-        return view('admin.owners.index',  compact('e_all', 'q_get'));
+        $owners = Owner::select('name', 'email', 'created_at')->get();
+        return view('admin.owners.index',  compact('owners'));
     }
 
     /**
@@ -47,7 +49,7 @@ class OwnersController extends Controller implements HasMiddleware  // SHINYA ED
      */
     public function create()
     {
-        //
+        return view('admin.owners.create');
     }
 
     /**
