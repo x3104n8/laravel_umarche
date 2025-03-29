@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\OwnersController;
 
 Route::get('/', function () {
     return view('admin.welcome');  // SHINYA EDIT
 });
+
+Route::resource('owners', OwnersController::class)->middleware('auth:admin');  // SHINYA EDIT
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');  // SHINYA EDIT
